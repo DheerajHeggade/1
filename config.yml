@@ -9,9 +9,10 @@ plugins: []
 
 google_analytics_id:
 
-title: "DEXTRO"
+title: "DEXTRO | Visual Storytelling & Digital Creation"
 avatar: "./images/dextro-logo.png"
 name: "DEXTRO"
+
 tagline: >-
   Storytelling • Visualising Ideas • Digital Creator
 
@@ -20,7 +21,7 @@ links:
       icon: "fa-brands fa-youtube"
       text: "YouTube"
       url: "https://www.youtube.com/@Dextrokannada"
-      alt: "DEXTRO Kannada YouTube channel"
+      alt: "DEXTRO YouTube channel"
       title: "Watch DEXTRO on YouTube"
       target: "_blank"
 
@@ -28,7 +29,7 @@ links:
       icon: "fa-solid fa-clapperboard"
       text: "Video Editing Portfolio"
       url: "https://dextro-portfolio.vercel.app/"
-      alt: "DEXTRO video editing portfolio for clients"
+      alt: "DEXTRO video editing portfolio"
       title: "View DEXTRO's video editing portfolio"
       target: "_blank"
 
@@ -52,8 +53,8 @@ links:
       icon: "fa-brands fa-telegram"
       text: "Telegram DM"
       url: "https://t.me/dheerajheggade"
-      alt: "Send Dheeraj Heggade a direct message on Telegram"
-      title: "Message on Telegram"
+      alt: "Send Dheeraj Heggade a Telegram message"
+      title: "Message DEXTRO on Telegram"
       target: "_blank"
 
   - link:
