@@ -1,233 +1,381 @@
-/* Reset default styles */
 :root {
-  --language-switcher-bg: #ffffff;
-  --language-switcher-fg: #000000;
-  --language-switcher-border: #d0d7de;
-  --language-switcher-hover: #f0f0f0;
-  --language-switcher-active-bg: #1f6feb;
-  --language-switcher-active-fg: #ffffff;
-  --language-switcher-focus: #1f6feb;
-  --language-switcher-shadow: 0 5px 18px rgb(0 0 0 / 12%);
+  --bg-1: #050505;
+  --bg-2: #0d0d0f;
+  --shape-1: #b3131b;
+  --shape-2: #5b0a10;
+  --shape-3: #2b2b31;
+  --fg: #f6f6f7;
+  --muted: #a4a4ab;
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 20px 70px rgba(0, 0, 0, 0.38);
+  --hover-bg: rgba(255, 255, 255, 0.11);
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --language-switcher-bg: var(--glass-bg);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--glass-border);
+  --language-switcher-hover: var(--hover-bg);
+  --language-switcher-active-bg: var(--fg);
+  --language-switcher-active-fg: var(--bg-1);
+  --language-switcher-focus: var(--fg);
+  --language-switcher-shadow: var(--glass-shadow);
+}
+
+/* Dark mode. Auto-switches via system appearance unless pinned via
+   `color_scheme: light|dark` in config.yml.
+   On dark, "frosted glass" becomes tinted-glass-on-deep-blue rather than a
+   simple invert. Ambient shapes desaturate so they feel like aurora rather
+   than pastel; glass cards become cooler and more translucent. */
+@media (prefers-color-scheme: dark) {
+  :root:not(.scheme-light) {
+    --bg-1: #050505;
+    --bg-2: #0d0d0f;
+    --shape-1: #b3131b;
+    --shape-2: #5b0a10;
+    --shape-3: #2b2b31;
+    --fg: #f6f6f7;
+    --muted: #a4a4ab;
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-shadow: 0 20px 70px rgba(0, 0, 0, 0.38);
+    --hover-bg: rgba(255, 255, 255, 0.11);
+  }
+}
+
+:root.scheme-dark {
+  --bg-1: #050505;
+  --bg-2: #0d0d0f;
+  --shape-1: #b3131b;
+  --shape-2: #5b0a10;
+  --shape-3: #2b2b31;
+  --fg: #f6f6f7;
+  --muted: #a4a4ab;
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 20px 70px rgba(0, 0, 0, 0.38);
+  --hover-bg: rgba(255, 255, 255, 0.11);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
 }
 
-/* Light mode (default) */
 body {
-  background-color: #ffffff;
-  color: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(179, 19, 27, 0.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 92%,
+      rgba(179, 19, 27, 0.10),
+      transparent 26%
+    ),
+    linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
   min-height: 100vh;
-  cursor: default;
-  text-align: center;
-  padding: 20px 0 20px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px 52px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s;
+}
+
+.bg-shape {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  opacity: 0.30;
+  pointer-events: none;
+}
+
+.bg-shape-1 {
+  width: 420px;
+  height: 420px;
+  background: var(--shape-1);
+  top: -160px;
+  left: -160px;
+}
+
+.bg-shape-2 {
+  width: 360px;
+  height: 360px;
+  background: var(--shape-2);
+  bottom: 4%;
+  right: -120px;
+}
+
+.bg-shape-3 {
+  width: 240px;
+  height: 240px;
+  background: var(--shape-3);
+  top: 42%;
+  left: 42%;
+  opacity: 0.16;
 }
 
 .container {
-  width: 90%;
-  max-width: 450px;
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.085),
+      rgba(255, 255, 255, 0.035)
+    );
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card {
+  padding: 34px 26px 30px;
+  text-align: center;
+  margin-bottom: 18px;
 }
 
 .profile-pic {
-  width: 120px;
-  height: 120px;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px;
-  border: 2px solid black;
+  margin: 0 auto 16px;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.025),
+    0 12px 34px rgba(0, 0, 0, 0.35);
 }
 
 .name {
-  font-size: 28px;
-  font-weight: bold;
-  margin: 10px 0;
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
 }
 
 .description {
-  font-size: 16px;
-  margin-bottom: 30px;
-  line-height: 1.6;
-  color: #555;
+  font-size: 14px;
+  color: var(--muted);
+  text-wrap: pretty;
+  max-width: 32ch;
+  margin: 0 auto;
 }
 
 .links {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
 .link-button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--fg);
+  transition:
+    background 0.24s ease,
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.link-button:hover,
+.link-button:focus-visible {
+  background: var(--hover-bg);
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.23);
+  outline: none;
+}
+
+.link-icon {
+  width: 36px;
+  height: 36px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background-color: #f0f0f0;
-  color: black;
-  padding: 15px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 500;
-  transition: background-color 0.3s, transform 0.2s;
+  justify-content: center;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
 }
 
-.link-button:hover {
-  background-color: #e0e0e0;
-  transform: scale(1.05);
-}
-
-.footer {
-  margin-top: 40px;
+.link-icon i {
   font-size: 14px;
-  color: #777;
+}
+
+.link-text {
+  flex: 1;
+}
+
+.link-button-text {
+  font-size: 13px;
+  color: var(--muted);
+  margin-left: 6px;
 }
 
 .button-container {
+  padding: 14px;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 .button-group {
   display: flex;
-  gap: 15px;
-  margin-top: 25px;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .icon-button {
-  border: none;
-  width: 40px;
-  height: 40px;
-  display: flex;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-  background: none;
-  color: black;
+  border-radius: 50%;
+  color: var(--fg);
+  transition:
+    background 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
 }
 
 .icon-button i {
-  font-size: 24px;
+  font-size: 17px;
 }
 
-.icon-button:hover {
-  transform: scale(1.1);
-  color: #666;
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: var(--hover-bg);
+  transform: translateY(-2px);
+  outline: none;
 }
 
-.icon-button:active {
-  transform: scale(0.95);
+.footer {
+  margin-top: 22px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: center;
 }
 
-.link-button-text {
-  font-size: 14px;
-  color: #777;
+.footer a {
+  color: var(--fg);
+  border-bottom: 1px solid var(--muted);
 }
 
 .copyright {
-  margin-top: 15px;
+  margin-top: 8px;
   font-size: 12px;
 }
 
-/* Dark mode — auto-switches via system appearance.
-   Surfaces use elevated grays (not pure #000) so cards stay distinguishable
-   from the body and OLED panels don't band. Body text is #e6edf3 rather
-   than pure white for less eye-strain at long reading times. */
-/* Auto-switch dark via OS, unless `color_scheme: light` pinned in config.yml.
-   Each rule's selector is prefixed with :root:not(.scheme-light) so the
-   forced-light class neutralises the entire block. */
-@media (prefers-color-scheme: dark) {
-  :root:not(.scheme-light) {
-    --language-switcher-bg: #161b22;
-    --language-switcher-fg: #e6edf3;
-    --language-switcher-border: #30363d;
-    --language-switcher-hover: #21262d;
-    --language-switcher-active-bg: #58a6ff;
-    --language-switcher-active-fg: #0d1117;
-    --language-switcher-focus: #58a6ff;
-    --language-switcher-shadow: 0 5px 18px rgb(0 0 0 / 32%);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
   }
-  :root:not(.scheme-light) body            { background-color: #0d1117; color: #e6edf3; }
-  :root:not(.scheme-light) a               { color: #e6edf3; }
-  :root:not(.scheme-light) .profile-pic    { border-color: #30363d; }
-  :root:not(.scheme-light) .description    { color: #9da7b1; }
-  :root:not(.scheme-light) .link-button    { background-color: #161b22; color: #e6edf3; border: 1px solid #21262d; }
-  :root:not(.scheme-light) .link-button:hover { background-color: #21262d; border-color: #30363d; }
-  :root:not(.scheme-light) .link-button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
-  :root:not(.scheme-light) .icon-button    { color: #e6edf3; }
-  :root:not(.scheme-light) .footer         { color: #7d8590; }
-  :root:not(.scheme-light) .link-button-text { color: #7d8590; }
 }
-/* `color_scheme: dark` — force the same dark palette regardless of OS. */
-:root.scheme-dark {
-  --language-switcher-bg: #161b22;
-  --language-switcher-fg: #e6edf3;
-  --language-switcher-border: #30363d;
-  --language-switcher-hover: #21262d;
-  --language-switcher-active-bg: #58a6ff;
-  --language-switcher-active-fg: #0d1117;
-  --language-switcher-focus: #58a6ff;
-  --language-switcher-shadow: 0 5px 18px rgb(0 0 0 / 32%);
+
+@supports not (backdrop-filter: blur(20px)) {
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.scheme-light) .card {
+      background: rgba(18, 18, 20, 0.94);
+    }
+  }
+
+  :root.scheme-dark .card {
+    background: rgba(18, 18, 20, 0.94);
+  }
 }
-:root.scheme-dark body            { background-color: #0d1117; color: #e6edf3; }
-:root.scheme-dark a               { color: #e6edf3; }
-:root.scheme-dark .profile-pic    { border-color: #30363d; }
-:root.scheme-dark .description    { color: #9da7b1; }
-:root.scheme-dark .link-button    { background-color: #161b22; color: #e6edf3; border: 1px solid #21262d; }
-:root.scheme-dark .link-button:hover { background-color: #21262d; border-color: #30363d; }
-:root.scheme-dark .link-button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
-:root.scheme-dark .icon-button    { color: #e6edf3; }
-:root.scheme-dark .footer         { color: #7d8590; }
-:root.scheme-dark .link-button-text { color: #7d8590; }
-/* "Latest" link variant — pinned highlight + truncated long titles */
-.link-button.link-latest {
-  position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-.link-latest-badge {
-  position: absolute;
-  top: -8px;
-  left: 14px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 2px 8px;
-  border-radius: 4px;
-  background: #1f6feb;
-  color: #fff;
-  line-height: 1.4;
-}
+
+/* "Latest" link variant — frosted accent ring + glowing pill badge */
 .link-button.link-latest {
   align-items: flex-start;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 40px rgba(179, 19, 27, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
+
+.link-latest-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 3px 9px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #b3131b;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  vertical-align: 1px;
+}
+
 .link-latest .link-text {
   flex: 1 1 auto;
   min-width: 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-          line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
   overflow-wrap: anywhere;
-  text-align: left;
   line-height: 1.35;
 }
+
+/* Dark-mode override for the latest variant */
 @media (prefers-color-scheme: dark) {
-  :root:not(.scheme-light) .link-button.link-latest { border-color: rgba(255, 255, 255, 0.16); }
-  :root:not(.scheme-light) .link-latest-badge { background: #58a6ff; color: #0d1117; }
+  :root:not(.scheme-light) .link-button.link-latest {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 16px 40px rgba(179, 19, 27, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
 }
-:root.scheme-dark .link-button.link-latest { border-color: rgba(255, 255, 255, 0.16); }
-:root.scheme-dark .link-latest-badge { background: #58a6ff; color: #0d1117; }
+
+:root.scheme-dark .link-button.link-latest {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 16px 40px rgba(179, 19, 27, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
