@@ -12,9 +12,8 @@ google_analytics_id:
 title: "DEXTRO | Visual Storytelling & Digital Creation"
 avatar: "./images/dextro-logo.png"
 name: "DEXTRO"
-
 tagline: >-
-  Storytelling • Visualising Ideas • Digital Creator
+  Visual Storytelling • Visualising Ideas • Digital Creator
 
 links:
   - link:
@@ -29,7 +28,7 @@ links:
       icon: "fa-solid fa-clapperboard"
       text: "Video Editing Portfolio"
       url: "https://dextro-portfolio.vercel.app/"
-      alt: "DEXTRO video editing portfolio"
+      alt: "DEXTRO video editing portfolio for clients"
       title: "View DEXTRO's video editing portfolio"
       target: "_blank"
 
@@ -47,22 +46,6 @@ links:
       url: "https://discord.gg/Wfs4unPZw9"
       alt: "Join the DEXTRO Discord server"
       title: "Join the DEXTRO Discord server"
-      target: "_blank"
-
-  - link:
-      icon: "fa-brands fa-telegram"
-      text: "Telegram DM"
-      url: "https://t.me/dheerajheggade"
-      alt: "Send Dheeraj Heggade a Telegram message"
-      title: "Message DEXTRO on Telegram"
-      target: "_blank"
-
-  - link:
-      icon: "fa-solid fa-briefcase"
-      text: "DM Me for Business Enquiries"
-      url: "https://t.me/dheerajheggade"
-      alt: "Contact DEXTRO for business enquiries"
-      title: "DM DEXTRO for business enquiries"
       target: "_blank"
 
 socials:
