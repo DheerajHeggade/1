@@ -9,11 +9,11 @@ plugins: []
 
 google_analytics_id:
 
-title: "DEXTRO | Kannada Tech & Creative"
+title: "DEXTRO"
 avatar: "./images/dextro-logo.png"
 name: "DEXTRO"
 tagline: >-
-  Kannada Tech • AI • Video Editing • Creative Tutorials
+  Storytelling • Visualising Ideas • Digital Creator
 
 links:
   - link:
@@ -23,6 +23,7 @@ links:
       alt: "DEXTRO Kannada YouTube channel"
       title: "Watch DEXTRO on YouTube"
       target: "_blank"
+
   - link:
       icon: "fa-solid fa-clapperboard"
       text: "Video Editing Portfolio"
@@ -30,6 +31,7 @@ links:
       alt: "DEXTRO video editing portfolio for clients"
       title: "View DEXTRO's video editing portfolio"
       target: "_blank"
+
   - link:
       icon: "fa-brands fa-linkedin-in"
       text: "LinkedIn Profile"
@@ -37,6 +39,7 @@ links:
       alt: "Dheeraj Heggade LinkedIn profile"
       title: "Connect on LinkedIn"
       target: "_blank"
+
   - link:
       icon: "fa-brands fa-discord"
       text: "Discord Server"
@@ -44,12 +47,21 @@ links:
       alt: "Join the DEXTRO Discord server"
       title: "Join the DEXTRO Discord server"
       target: "_blank"
+
   - link:
       icon: "fa-brands fa-telegram"
       text: "Telegram DM"
       url: "https://t.me/dheerajheggade"
       alt: "Send Dheeraj Heggade a direct message on Telegram"
       title: "Message on Telegram"
+      target: "_blank"
+
+  - link:
+      icon: "fa-solid fa-briefcase"
+      text: "DM Me for Business Enquiries"
+      url: "https://t.me/dheerajheggade"
+      alt: "Contact DEXTRO for business enquiries"
+      title: "DM DEXTRO for business enquiries"
       target: "_blank"
 
 socials:
@@ -59,18 +71,21 @@ socials:
       title: "YouTube"
       alt: "YouTube"
       target: "_blank"
+
   - social:
       icon: "fa-brands fa-linkedin-in"
       url: "https://www.linkedin.com/in/dheeraj-heggade-183002345/"
       title: "LinkedIn"
       alt: "LinkedIn"
       target: "_blank"
+
   - social:
       icon: "fa-brands fa-discord"
       url: "https://discord.gg/Wfs4unPZw9"
       title: "Discord"
       alt: "Discord"
       target: "_blank"
+
   - social:
       icon: "fa-brands fa-telegram"
       url: "https://t.me/dheerajheggade"
